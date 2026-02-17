@@ -34,29 +34,25 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
-const MovieSchema = new mongoose_1.Schema({
+const AppointmentSchema = new mongoose_1.Schema({
     title: {
         type: String,
         required: [true, 'Title Required']
     },
-    year: {
-        type: Number,
-        min: 1900,
-        required: [true, 'Year Required']
-    },
-    genre: {
-        type: String
-    },
-    rating: {
-        type: Number,
-        min: 0,
-        max: 10
+    date: {
+        type: Date,
+        required: [true, 'Date Required']
     },
     duration: {
         type: Number,
-        min: 1
+        min: 1,
+        required: [true, 'Duration Required']
+    },
+    confirmed: {
+        type: Boolean,
+        default: false
     }
 });
 // make model public. As it's a mongoose model it inherits the mongoose CRUD methods
-const Movie = mongoose_1.default.model('Movie', MovieSchema);
-exports.default = Movie;
+const Appointment = mongoose_1.default.model('Appointment', AppointmentSchema);
+exports.default = Appointment;

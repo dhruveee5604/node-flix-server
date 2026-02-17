@@ -10,7 +10,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const swagger_jsdoc_1 = __importDefault(require("swagger-jsdoc"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 // our mvc file imports
-const moviesRoutes_1 = __importDefault(require("./routes/moviesRoutes"));
+const appointmentsRoutes_1 = __importDefault(require("./routes/appointmentsRoutes"));
 // create & run new express app
 const app = (0, express_1.default)();
 // express app config
@@ -19,17 +19,19 @@ app.use(body_parser_1.default.json()); // parse request body as json
 mongoose_1.default.connect(process.env.DB, {})
     .then((response) => console.log('Connected to MongoDB'))
     .catch((error) => console.log(`Connection Failed: ${error}`));
+// use appointments routes
+app.use('/api/v1/appointments', appointmentsRoutes_1.default);
 app.listen(4000, () => { console.log(`Express API running on port 4000`); });
 // swagger api doc config
 const options = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'NodeFlix API',
+            title: 'Appointment Manager API',
             version: '1.0.0'
         }
     },
-    apis: ['./dist/controllers/*.js'] // location of api methods 
+    apis: ['./dist/controllers/*.js'] // location of api methods
 };
 // create new document using options above
 const openApiSpecs = (0, swagger_jsdoc_1.default)(options);
@@ -47,4 +49,4 @@ app.get('/api-docs', (req, res) => {
     res.send(html);
 });
 // api routing
-app.use('/api/v1/movies', moviesRoutes_1.default);
+app.use('/api/v1/appointments', appointmentsRoutes_1.default);

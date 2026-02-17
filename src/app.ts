@@ -6,7 +6,7 @@ import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
 // our mvc file imports
-import moviesRouter from './routes/moviesRoutes';
+import appointmentsRouter from './routes/appointmentsRoutes';
 
 // create & run new express app
 const app: Application = express();
@@ -19,6 +19,9 @@ mongoose.connect(process.env.DB, {})
 .then((response) => console.log('Connected to MongoDB'))
 .catch((error) => console.log(`Connection Failed: ${error}`));
 
+// use appointments routes
+app.use('/api/v1/appointments', appointmentsRouter);
+
 app.listen(4000, () => { console.log(`Express API running on port 4000`) });
 
 // swagger api doc config
@@ -26,11 +29,11 @@ const options = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'NodeFlix API',
+            title: 'Appointment Manager API',
             version: '1.0.0'
         }
     },
-    apis: ['./dist/controllers/*.js']  // location of api methods 
+    apis: ['./dist/controllers/*.js']  // location of api methods
 };
 
 // create new document using options above
@@ -51,4 +54,4 @@ app.get('/api-docs', (req: Request, res: Response) => {
 });
 
 // api routing
-app.use('/api/v1/movies', moviesRouter);
+app.use('/api/v1/appointments', appointmentsRouter);
