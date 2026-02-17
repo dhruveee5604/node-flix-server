@@ -1,23 +1,30 @@
 {
-  "name": "flix-server",
+  "name": "appointment-manager-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Appointment Manager REST API using Node.js, Express, TypeScript, MongoDB, and Swagger",
+  "main": "dist/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon"
+    "start": "node --env-file=.env dist/app.js",
+    "dev": "nodemon",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["appointment", "manager", "api", "nodejs", "express", "typescript", "mongodb", "swagger"],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "body-parser": "^2.2.2",
-    "express": "^5.2.1",
-    "mongoose": "^9.1.5",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "swagger-ui-express": "^5.0.0",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.5",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
+    "nodemon": "^3.0.2",
+    "typescript": "^5.3.3"
   }
 }
